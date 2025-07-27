@@ -1,4 +1,4 @@
-CREATE TABLE User (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(120) UNIQUE NOT NULL,
     firstName VARCHAR(50) NOT NULL,
@@ -10,22 +10,22 @@ CREATE TABLE User (
     updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Account (
+CREATE TABLE accounts (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES User(id),
+    user_id INTEGER NOT NULL REFERENCES users(id),
     accountName VARCHAR(50) NOT NULL,
     accountNumber VARCHAR(50) NOT NULL,
-    accountBalance NUMERIC NOT NULL,
+    accountBalance MONEY NOT NULL,
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Transaction (
+CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES User(id),
-    description TEXT,
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    description TEXT NOT NULL,
     status VARCHAR(10) NOT NULL DEFAULT 'Pending',
-    amount NUMERIC NOT NULL,
-    type VARCHAR(10) NOT NULL DEFAULT 'income'
-    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    amount MONEY NOT NULL,
+    type VARCHAR(10) NOT NULL DEFAULT 'income',
+    transactionDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
