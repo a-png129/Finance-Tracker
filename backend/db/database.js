@@ -1,12 +1,12 @@
 import pg from "pg";
-import decrypt from "dotenv";
+import dotenv from "dotenv";
 // app service
 
 dotenv.config();
 
 const { Pool } = pg;
 
-export const pool = new Pool({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
