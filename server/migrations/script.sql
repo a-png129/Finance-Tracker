@@ -24,7 +24,6 @@ CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users(id),
     description TEXT NOT NULL,
-    status VARCHAR(10) NOT NULL DEFAULT 'Pending',
     amount MONEY NOT NULL,
     type VARCHAR(10) NOT NULL DEFAULT 'income',
     transactionDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
