@@ -2,7 +2,7 @@ import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
 
-import router from "./routes/routes.js"
+import routes from "./routes/index.js"
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ app.use(express.json()); // parse incoming JSON payloads
 app.use(express.urlencoded({ extended: true })); // body parser
 
 // mount the router
-app.use("/", router);
+app.use("/api", routes);
 
 // // catch-all for unmatched requests
 // app.use("*", (req, res) => {

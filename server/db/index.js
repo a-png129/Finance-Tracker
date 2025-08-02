@@ -1,6 +1,6 @@
 import pg from "pg";
 import dotenv from "dotenv";
-// app service
+// PostgreSQL connection setup
 
 dotenv.config();
 

@@ -1,5 +1,3 @@
-import { pool } from "../db/index.js";
-
 // will return to auth later
 
 export const signupUser = async (req, res) => {
