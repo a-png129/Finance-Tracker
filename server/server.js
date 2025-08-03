@@ -1,3 +1,5 @@
+console.time("Startup");
+
 import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
@@ -26,5 +28,6 @@ app.use("/api", routes);
 
 // start the server
 app.listen(PORT, () => {
+  console.timeEnd("Startup");
   console.log(`Server running at http://localhost:${PORT}/`);
 });

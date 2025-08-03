@@ -5,8 +5,7 @@ import {
 
 export const createTransaction = async (req, res) => {
   const { amount, type, category, description, transactionDate } = req.body;
-  // const user_id = req.user.id;
-  const user_id = 1;
+  const user_id = req.user.id;
   try {
     const transaction = await createTransactionQuery(
       user_id,
@@ -24,8 +23,7 @@ export const createTransaction = async (req, res) => {
 };
 
 export const getTransactions = async (req, res) => {
-  // const user_id = req.user.id;
-  const user_id = 1;
+  const user_id = req.user.id;
   try {
     const transactions = await getTransactionsQuery(user_id);
     res.json(transactions);
