@@ -34,4 +34,11 @@ CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     amount INTEGER,
-    type VAR
+    type VARCHAR(10),
+    category VARCHAR(50),
+    description VARCHAR(50),
+    transactionDate INTEGER
+);
+
+-- test user id:1
+INSERT INTO users VALUES (1, 'test@example.com', 'password'); 
