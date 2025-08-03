@@ -20,16 +20,6 @@ CREATE TABLE users (
     password VARCHAR(120)
 );
 
-CREATE TABLE accounts (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES users(id),
-    accountName VARCHAR(50) NOT NULL,
-    accountNumber VARCHAR(50) NOT NULL,
-    accountBalance MONEY NOT NULL,
-    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
 -- CREATE TABLE transactions (
 --     id SERIAL PRIMARY KEY,
 --     user_id INTEGER NOT NULL REFERENCES users(id),
@@ -44,11 +34,4 @@ CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     amount INTEGER,
-    type VARCHAR(10),
-    category VARCHAR(50),
-    description VARCHAR(50),
-    transactionDate INTEGER
-);
-
--- test user id:1
-INSERT INTO users VALUES (1, 'test@example.com', 'password'); 
+    type VAR
