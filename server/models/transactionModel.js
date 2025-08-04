@@ -26,3 +26,13 @@ export async function getTransactionsQuery(user_id) {
   );
   return result.rows;
 }
+
+export async function getTotalAmount(user_id, type) {
+  const result = await pool.query(
+    `SELECT SUM(amount) 
+        FROM transactions
+        WHERE user_id=$1 AND type=$2`,
+    [user_id, type]
+  );
+  return result.rows[0].sum;
+}

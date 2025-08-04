@@ -2,6 +2,7 @@ import express from "express";
 import {
   createTransaction,
   getTransactions,
+  getSummaryInfo
 } from "../controllers/transactionController.js";
 import { fakeAuth } from "../middleware/authMiddleware.js";
 
@@ -14,7 +15,10 @@ router.get("/", getTransactions);
 
 router.get("/test", (req, res) => {
   res.send("OK");
-})
+});
+
+// GET /api/transaction/summary
+router.get("/summary", getSummaryInfo);
 
 // POST /api/transaction
 router.post("/", createTransaction);
