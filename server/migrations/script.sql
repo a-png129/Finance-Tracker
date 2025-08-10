@@ -24,9 +24,14 @@ CREATE TABLE users (
 --     id SERIAL PRIMARY KEY,
 --     user_id INTEGER NOT NULL REFERENCES users(id),
 --     amount MONEY NOT NULL,
---     type VARCHAR(10) NOT NULL DEFAULT 'income',
+--     transType VARCHAR(10) NOT NULL, 
+--     -- income/expense
+--     paymentType VARCHAR(10) NOT NULL,
+--     -- credit/debit/cash
 --     category VARCHAR(50) NOT NULL,
+--     -- food/rent/tuition...
 --     description TEXT,
+--     -- bigway/jan-rent/W1-tuition
 --     transactionDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 -- );
 

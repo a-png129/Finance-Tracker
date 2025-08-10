@@ -24,16 +24,30 @@ const Transactions = () => {
     <div>
       <h1>Transaction Activity</h1>
       {transactions.length === 0 ? (
-        <p>No transactions yet.</p>
+        <p>No transactions history.</p>
       ) : (
-        <ul>
-          {transactions.map((t) => (
-            <li key={t.id}>
-              {t.type} | ${t.amount} | {t.transactiondate} | {t.category} |{" "}
-              {t.description}
-            </li>
-          ))}
-        </ul>
+        <table className="w-full border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {transactions.map((t) => (
+              <tr key={t.id} className="hover:bg-gray-300 transition-colors">
+                <td>{t.transactiondate}</td>
+                <td>{t.category}</td>
+                <td>{t.description}</td>
+                <td>{t.type}</td>
+                <td>{t.amount}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
