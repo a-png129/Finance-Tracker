@@ -49,8 +49,8 @@ const Modal = (props) => {
             className="w-full border p-2 rounded"
           >
             <option value="">Select Type</option>
-            <option value="Income">Income</option>
-            <option value="Expense">Expense</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
           </select>
           <input
             name="transDate"

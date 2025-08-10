@@ -13,6 +13,7 @@ const Home = () => {
       const res = await axios.get(
         "http://localhost:3000/api/transaction/summary"
       );
+      // console.log(res.data);
       setSummaryInfo(res.data);
     } catch (err) {
       console.error("Error fetching summary info:", err);
@@ -22,16 +23,16 @@ const Home = () => {
   // needs to be triggered after every new transaction added...
   useEffect(() => {
     fetchSummaryInfo();
-  });
+  }, []);
 
   return (
     <div>
       Home
       <div className="flex justify-between">
         {/* card */}
-        <div>Income: {summaryInfo.incomeTotal}</div>
-        <div>Expense: {summaryInfo.expenseTotal}</div>
-        <div>Balance: {summaryInfo.balance}</div>
+        <div>Income: ${summaryInfo.incomeTotal}</div>
+        <div>Expense: ${summaryInfo.expenseTotal}</div>
+        <div>Balance: ${summaryInfo.balance}</div>
       </div>
     </div>
   );

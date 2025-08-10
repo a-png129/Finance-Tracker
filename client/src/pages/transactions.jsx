@@ -7,12 +7,13 @@ const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
 
+  // this should go in services folder
   const fetchTransactions = async () => {
     try {
       const res = await axios.get("http://localhost:3000/api/transaction");
       // idk why the proxy in package.json doesn't work...
       // if proxy works then i'd be able to just write "/api/transaction"
-      console.log(res.data);
+      // console.log(res.data);
       setTransactions(res.data);
     } catch (err) {
       console.error("Error fetching transactions:", err);
@@ -21,7 +22,7 @@ const Transactions = () => {
 
   useEffect(() => {
     fetchTransactions();
-  });
+  }, []);
 
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
