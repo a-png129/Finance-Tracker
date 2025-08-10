@@ -1,11 +1,14 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Navbar from "./navbar";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div className="flex">
       <Navbar />
-      <main className="flex-1 p-6 bg-gray-100">{children}</main>
+      <main className="flex-1 p-6 bg-gray-100">
+        <Outlet />
+      </main>
     </div>
   );
 };
