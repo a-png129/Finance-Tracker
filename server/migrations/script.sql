@@ -20,28 +20,29 @@ CREATE TABLE users (
     password VARCHAR(120)
 );
 
--- CREATE TABLE transactions (
---     id SERIAL PRIMARY KEY,
---     user_id INTEGER NOT NULL REFERENCES users(id),
---     amount DECIMAL(19, 4) NOT NULL,
---     transType VARCHAR(7) NOT NULL, 
---     -- income/expense
---     category VARCHAR(50) NOT NULL,
---     -- food/rent/tuition...
---     description TEXT,
---     -- bigway/jan-rent/W1-tuition
---     transDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
--- );
-
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id),
-    amount INTEGER,
-    type VARCHAR(10),
-    category VARCHAR(50),
-    description VARCHAR(50),
-    transactionDate INTEGER
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    amount DECIMAL(19, 4) NOT NULL,
+    transType VARCHAR(7) NOT NULL, 
+    -- income/expense
+    category VARCHAR(50) NOT NULL,
+    -- food/rent/tuition...
+    description TEXT,
+    -- bigway/jan-rent/W1-tuition
+    transDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+-- test 
+-- CREATE TABLE transactions (
+--     id SERIAL PRIMARY KEY,
+--     user_id INTEGER REFERENCES users(id),
+--     amount INTEGER,
+--     type VARCHAR(10),
+--     category VARCHAR(50),
+--     description VARCHAR(50),
+--     transactionDate INTEGER
+-- );
 
 -- test user id:1
 INSERT INTO users VALUES (1, 'test@example.com', 'password'); 
