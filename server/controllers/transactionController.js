@@ -5,16 +5,16 @@ import {
 } from "../models/transactionModel.js";
 
 export const createTransaction = async (req, res) => {
-  const { amount, type, category, description, transactionDate } = req.body;
+  const { amount, transType, category, description, transDate } = req.body;
   const user_id = req.user.id;
   try {
     const transaction = await createTransactionQuery(
       user_id,
       amount,
-      type,
+      transType,
       category,
       description,
-      transactionDate
+      transDate
     );
     res.status(201).json(transaction);
   } catch (error) {

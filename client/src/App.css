@@ -1,4 +1,9 @@
 @import "tailwindcss";
+
+th {
+  text-align: left;
+}
+
 /* 
 #root {
   max-width: 1280px;

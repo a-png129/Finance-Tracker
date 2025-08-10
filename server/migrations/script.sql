@@ -23,16 +23,14 @@ CREATE TABLE users (
 -- CREATE TABLE transactions (
 --     id SERIAL PRIMARY KEY,
 --     user_id INTEGER NOT NULL REFERENCES users(id),
---     amount MONEY NOT NULL,
---     transType VARCHAR(10) NOT NULL, 
+--     amount DECIMAL(19, 4) NOT NULL,
+--     transType VARCHAR(7) NOT NULL, 
 --     -- income/expense
---     paymentType VARCHAR(10) NOT NULL,
---     -- credit/debit/cash
 --     category VARCHAR(50) NOT NULL,
 --     -- food/rent/tuition...
 --     description TEXT,
 --     -- bigway/jan-rent/W1-tuition
---     transactionDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+--     transDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 -- );
 
 CREATE TABLE transactions (
@@ -47,3 +45,10 @@ CREATE TABLE transactions (
 
 -- test user id:1
 INSERT INTO users VALUES (1, 'test@example.com', 'password'); 
+
+INSERT INTO transactions (user_id, amount, transType, category, description, transDate) 
+VALUES (1, 10, 'expense', 'food', 'mcDonalds', '2025-08-09 22:30:00');
+INSERT INTO transactions (user_id, amount, transType, category, description, transDate) 
+VALUES (1, 100, 'income', 'pne', 'mar 1 paycheque', '2025-08-09 22:31:00');
+INSERT INTO transactions (user_id, amount, transType, category, description, transDate) 
+VALUES (1, 25, 'expense', 'food', 'bigway', '2025-08-09 22:32:00');

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import Modal from "../components/modal";
+
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const fetchTransactions = async () => {
     try {
@@ -20,9 +23,17 @@ const Transactions = () => {
     fetchTransactions();
   }, []);
 
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
+
   return (
     <div>
-      <h1>Transaction Activity</h1>
+      <div className="w-full flex justify-between">
+        <h1>Transaction Activity</h1>
+        <button onClick={handleOpenModal} className="p-2 mb-8 bg-blue-500 hover:bg-blue-600 text-white flex justify-center rounded">
+          New Transaction
+        </button>
+      </div>
       {transactions.length === 0 ? (
         <p>No transactions history.</p>
       ) : (
@@ -37,18 +48,21 @@ const Transactions = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {transactions.map((t) => (
-              <tr key={t.id} className="hover:bg-gray-300 transition-colors">
-                <td>{t.transactiondate}</td>
-                <td>{t.category}</td>
-                <td>{t.description}</td>
-                <td>{t.type}</td>
-                <td>{t.amount}</td>
-              </tr>
-            ))}
+            {transactions.map((t) => {
+              return (
+                <tr key={t.id} className="hover:bg-gray-300 transition-colors">
+                  <td>{t.transdate}</td>
+                  <td>{t.category}</td>
+                  <td>{t.description}</td>
+                  <td>{t.transtype}</td>
+                  <td>$ {t.amount}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       )}
+      {isModalOpen && <Modal handleCancel={handleCloseModal}/>}
     </div>
   );
 };
