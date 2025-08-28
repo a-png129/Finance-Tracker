@@ -20,36 +20,51 @@ CREATE TABLE users (
     password VARCHAR(120)
 );
 
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    transType VARCHAR(7) NOT NULL,
+    -- income/expense
+    title VARCHAR(50) UNIQUE NOT NULL,
+    colour VARCHAR(7) NOT NULL -- hex code colour
+);
+
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users(id),
-    amount DECIMAL(19, 4) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
     transType VARCHAR(7) NOT NULL, 
     -- income/expense
-    category VARCHAR(50) NOT NULL,
-    -- food/rent/tuition...
+    category_id INT NOT NULL DEFAULT (
+        SELECT id FROM categories WHERE name='Unset'
+    ),
+    -- food/rent/tuition... set default to 'other'
     description TEXT,
     -- bigway/jan-rent/W1-tuition
     transDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    FOREIGN KEY category_id REFERENCES categories(id) ON DELETE SET DEFAULT
 );
-
--- test 
--- CREATE TABLE transactions (
---     id SERIAL PRIMARY KEY,
---     user_id INTEGER REFERENCES users(id),
---     amount INTEGER,
---     type VARCHAR(10),
---     category VARCHAR(50),
---     description VARCHAR(50),
---     transactionDate INTEGER
--- );
 
 -- test user id:1
 INSERT INTO users VALUES (1, 'test@example.com', 'password'); 
 
+INSERT INTO categories (transType, title, colour)
+VALUES ('Expense', 'Unset', '#D3D3D3');
+INSERT INTO categories (transType, title, colour)
+VALUES ('Expense', 'Rent', '#ED694E');
+INSERT INTO categories (transType, title, colour)
+VALUES ('Expense', 'Food', '#EDC04E');
+INSERT INTO categories (transType, title, colour)
+VALUES ('Expense', 'Transportation', '#6DD15E');
+INSERT INTO categories (transType, title, colour)
+VALUES ('Expense', 'Entertainment', '#54B8E3');
+INSERT INTO categories (transType, title, colour)
+VALUES ('Expense', 'Misc', '#8F66CC');
+INSERT INTO categories (transType, title, colour)
+VALUES ('Income', 'Work', '#8F66CC');
+
 INSERT INTO transactions (user_id, amount, transType, category, description, transDate) 
-VALUES (1, 10, 'expense', 'food', 'mcDonalds', '2025-08-09 22:30:00');
+VALUES (1, 10, 'expense', '3', 'mcDonalds', '2025-08-09 22:30:00');
 INSERT INTO transactions (user_id, amount, transType, category, description, transDate) 
-VALUES (1, 100, 'income', 'pne', 'mar 1 paycheque', '2025-08-09 22:31:00');
+VALUES (1, 100, 'income', '7', 'mar 1 paycheque', '2025-08-09 22:31:00');
 INSERT INTO transactions (user_id, amount, transType, category, description, transDate) 
-VALUES (1, 25, 'expense', 'food', 'bigway', '2025-08-09 22:32:00');
+VALUES (1, 25, 'expense', '3', 'bigway', '2025-08-09 22:32:00');
