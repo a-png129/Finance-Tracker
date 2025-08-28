@@ -38,7 +38,7 @@ const Transactions = () => {
       {transactions.length === 0 ? (
         <p>No transactions history.</p>
       ) : (
-        <table className="w-full border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+        <table className="w-full border border-gray-200 rounded-lg overflow-hidden shadow bg-white">
           <thead>
             <tr>
               <th>Date</th>
@@ -52,7 +52,7 @@ const Transactions = () => {
             {transactions.map((t) => {
               return (
                 <tr key={t.id} className="hover:bg-gray-300 transition-colors">
-                  <td>{t.transdate}</td>
+                  <td>{new Date(t.transdate).toLocaleDateString()}</td>
                   <td>{t.category}</td>
                   <td>{t.description}</td>
                   <td>{t.transtype}</td>

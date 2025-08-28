@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import ExpensePieChart from "../components/expensePieChart";
+
 const Home = () => {
   const [summaryInfo, setSummaryInfo] = useState({
     incomeTotal: 0,
@@ -34,6 +36,7 @@ const Home = () => {
         <div>Expense: ${summaryInfo.expenseTotal}</div>
         <div>Balance: ${summaryInfo.balance}</div>
       </div>
+      <ExpensePieChart />
     </div>
   );
 };
