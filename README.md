@@ -13,7 +13,7 @@ A personal finance tracking app that helps users manage their income and expense
 - Database: PostgreSQL
 - Charting: Recharts
 
-## Future Improvements
+## Ongoing Improvements
 - more charts for different data visualization
 - Authentication and multi-user support
 - Export transactions to CSV
