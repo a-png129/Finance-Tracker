@@ -4,9 +4,9 @@ import "../components/SummaryCard.css"
 
 const SummaryCard = (props) => {
   return (
-    <div className="card">
-      <p className={`card-amount ${props.textColour}`}>$ {props.amount}</p>
-      <p className="card-title">{props.title}</p>
+    <div className="summary-card">
+      <p className={`amount ${props.textColour}`}>$ {props.amount}</p>
+      <p className="title">{props.title}</p>
     </div>
   );
 };

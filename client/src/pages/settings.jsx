@@ -6,6 +6,7 @@ const Settings = () => {
   return (
     <div>
       <PageTitle title="Settings" />
+      work in progress!
     </div>
   );
 };

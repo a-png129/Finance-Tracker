@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Modal from "../components/modal";
 import PageTitle from "../components/PageTitle";
+import Button from "../components/Button";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
@@ -31,14 +32,12 @@ const Transactions = () => {
     <div>
       <div className="w-full flex justify-between">
         <PageTitle title="Transactions"/>
-        <button onClick={handleOpenModal} className="p-2 mb-8 bg-blue-500 hover:bg-blue-600 text-white flex justify-center rounded">
-          New Transaction
-        </button>
+        <Button onClick={handleOpenModal} label="New Transaction"/>
       </div>
       {transactions.length === 0 ? (
         <p>No transactions history.</p>
       ) : (
-        <table className="w-full border border-gray-200 rounded-lg overflow-hidden shadow bg-white">
+        <table className="transactions-table">
           <thead>
             <tr>
               <th>Date</th>
@@ -48,10 +47,10 @@ const Transactions = () => {
               <th>Amount</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200">
+          <tbody>
             {transactions.map((t) => {
               return (
-                <tr key={t.id} className="hover:bg-gray-300 transition-colors">
+                <tr key={t.id}>
                   <td>{new Date(t.transdate).toLocaleDateString()}</td>
                   <td>{t.categorytitle}</td>
                   <td>{t.description}</td>

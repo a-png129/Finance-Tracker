@@ -1,11 +1,11 @@
 /* @import "tailwindcss"; */
 
-.card {
+.summary-card {
   width: 100%;
   height: 10rem;
   background-color: #ffffff;
   border-radius: 1rem; /* rounded corners */
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* soft shadow */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* soft shadow */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,12 +13,12 @@
   margin-bottom: 2rem;
 }
 
-.card-amount {
+.summary-card .amount {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
-.card-title {
+.summary-card .title {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
