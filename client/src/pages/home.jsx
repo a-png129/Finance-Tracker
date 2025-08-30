@@ -8,14 +8,15 @@ const Home = () => {
     incomeTotal: 0,
     expenseTotal: 0,
     balance: 0,
+    amountPerExpenseCategory: [],
   });
 
+  // this should go in services folder
   const fetchSummaryInfo = async () => {
     try {
       const res = await axios.get(
         "http://localhost:3000/api/transaction/summary"
       );
-      // console.log(res.data);
       setSummaryInfo(res.data);
     } catch (err) {
       console.error("Error fetching summary info:", err);
@@ -36,7 +37,7 @@ const Home = () => {
         <div>Expense: ${summaryInfo.expenseTotal}</div>
         <div>Balance: ${summaryInfo.balance}</div>
       </div>
-      <ExpensePieChart />
+      <ExpensePieChart data={summaryInfo.amountPerExpenseCategory}/>
     </div>
   );
 };

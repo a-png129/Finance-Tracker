@@ -3,6 +3,7 @@ import {
   getTransactionsQuery,
   getTotalAmount,
   getCategoriesQuery,
+  getAmountPerCategory,
 } from "../models/transactionModel.js";
 
 export const createTransaction = async (req, res) => {
@@ -40,10 +41,13 @@ export const getSummaryInfo = async (req, res) => {
     const incomeTotal = await getTotalAmount(user_id, "Income");
     const expenseTotal = await getTotalAmount(user_id, "Expense");
     const balance = incomeTotal - expenseTotal;
+    // const amountPerIncomeCategory = await getAmountPerCategory(user_id, "Income");
+    const amountPerExpenseCategory = await getAmountPerCategory(user_id, "Expense");
     res.status(200).json({
       incomeTotal: incomeTotal,
       expenseTotal: expenseTotal,
       balance: balance,
+      amountPerExpenseCategory: amountPerExpenseCategory,
     });
   } catch (error) {
     console.log(error);

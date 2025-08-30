@@ -48,3 +48,15 @@ export async function getCategoriesQuery(user_id, type) {
   );
   return result.rows
 }
+
+export async function getAmountPerCategory(user_id, type) {
+  const result = await pool.query(
+    `SELECT c.categoryTitle, COALESCE(SUM(t.amount), 0) AS total, c.categoryColour
+        FROM transactions t
+        JOIN categories c ON t.category_id=c.id
+        WHERE t.user_id=$1 AND c.user_id=$1 AND c.transType=$2
+        GROUP BY c.categoryTitle, c.categoryColour`,
+    [user_id, type]
+  );
+  return result.rows
+}
