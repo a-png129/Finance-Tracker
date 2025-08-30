@@ -22,7 +22,7 @@ const ExpensePieChart = (props) => {
 
   return (
     <div className="flex flex-col items-center p-6">
-      <h2 className="text-xl font-semibold mb-4">Total Expenses</h2>
+      <h2 className="text-xl font-semibold mb-4">Expenses By Category</h2>
       <div className="w-9/12 h-80">
         <ResponsiveContainer>
           <PieChart>

@@ -11,7 +11,7 @@ const Navbar = () => {
       }`}
     >
       <div className="flex justify-between">
-        {isOpen && <h1 className="text-2xl font-bold mb-8">Finance App</h1>}
+        {isOpen && <div className="text-2xl font-bold mb-8">Finance App</div>}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="p-2 mb-8 hover:bg-gray-700 flex justify-center rounded"

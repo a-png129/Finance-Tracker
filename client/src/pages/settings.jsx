@@ -1,7 +1,13 @@
 import React from "react";
 
+import PageTitle from "../components/PageTitle";
+
 const Settings = () => {
-  return <div>Settings</div>;
+  return (
+    <div>
+      <PageTitle title="Settings" />
+    </div>
+  );
 };
 
 export default Settings;

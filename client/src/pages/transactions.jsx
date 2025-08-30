@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Modal from "../components/modal";
+import PageTitle from "../components/PageTitle";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
@@ -29,7 +30,7 @@ const Transactions = () => {
   return (
     <div>
       <div className="w-full flex justify-between">
-        <h1>Transaction Activity</h1>
+        <PageTitle title="Transactions"/>
         <button onClick={handleOpenModal} className="p-2 mb-8 bg-blue-500 hover:bg-blue-600 text-white flex justify-center rounded">
           New Transaction
         </button>

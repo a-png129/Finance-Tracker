@@ -4,6 +4,10 @@ th {
   text-align: left;
 }
 
+body {
+  color: rgba(31, 41, 55);
+}
+
 /* 
 #root {
   max-width: 1280px;
