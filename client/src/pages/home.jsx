@@ -8,9 +8,9 @@ import "../components/ChartCard.css"
 
 const Home = () => {
   const [summaryInfo, setSummaryInfo] = useState({
-    incomeTotal: 0,
-    expenseTotal: 0,
-    balance: 0,
+    incomeTotal: "",
+    expenseTotal: "",
+    balance: "",
     amountPerExpenseCategory: [],
   });
 
@@ -26,7 +26,6 @@ const Home = () => {
     }
   };
 
-  // needs to be triggered after every new transaction added...
   useEffect(() => {
     fetchSummaryInfo();
   }, []);
