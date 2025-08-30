@@ -1,18 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Modal = (props) => {
   const [formData, setFormData] = useState({
-    amount: 0,
-    transType: "",
-    category: "",
+    amount: "",
+    category_id: "",
     description: "",
-    transDate: "",
+    transDate: new Date().toLocaleDateString("en-CA"), // curr date
   });
+  const [transType, setTransType] = useState("Expense");
+  const [incomeCategories, setIncomeCategories] = useState([]);
+  const [expenseCategories, setExpenseCategories] = useState([]);
+  const categories =
+    transType === "Income" ? incomeCategories : expenseCategories;
+
+  // this should go in services folder
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:3000/api/transaction/categories"
+      );
+      setIncomeCategories(res.data.incomeCategories);
+      setExpenseCategories(res.data.expenseCategories);
+    } catch (err) {
+      console.error("Error fetching transactions:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []); // dependency array tells React when to re-run effect
 
   function handleChange(event) {
     const { name, value } = event.target;
-
     setFormData((prevValue) => {
       return {
         ...prevValue,
@@ -21,17 +41,19 @@ const Modal = (props) => {
     });
   }
 
+  function handleTransType(event) {
+    setTransType(event.target.value);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const res = await axios.post(
         "http://localhost:3000/api/transaction",
         formData
       );
-
-      // idk how to close modal and refresh transaction list
       props.handleCancel();
+      if (props.refreshTransactions) props.refreshTransactions();
     } catch (error) {
       console.error("Error submitting transaction:", error);
     }
@@ -44,35 +66,42 @@ const Modal = (props) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <select
             name="transType"
-            value={formData.transType}
+            value={transType}
+            onChange={handleTransType}
+            className="w-full border p-2 rounded"
+          >
+            <option value="Expense">Expense</option>
+            <option value="Income">Income</option>
+          </select>
+          <select
+            name="category_id"
+            value={formData.category_id}
             onChange={handleChange}
             className="w-full border p-2 rounded"
           >
-            <option value="">Select Type</option>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
+            <option value="">Select Category</option>
+            {categories.map((c) => {
+              // dynamically load category options based on transType
+              return (
+                <option key={c.id} value={c.id}>
+                  {c.categorytitle}
+                </option>
+              );
+            })}
           </select>
-          <input
-            name="transDate"
-            value={formData.transDate}
-            type="date"
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-          />
-          <input
-            name="category"
-            value={formData.category}
-            type="text"
-            onChange={handleChange}
-            placeholder="Category"
-            className="w-full border p-2 rounded"
-          />
           <input
             name="description"
             value={formData.description}
             type="text"
             onChange={handleChange}
             placeholder="Description"
+            className="w-full border p-2 rounded"
+          />
+          <input
+            name="transDate"
+            value={formData.transDate}
+            type="date"
+            onChange={handleChange}
             className="w-full border p-2 rounded"
           />
           <input

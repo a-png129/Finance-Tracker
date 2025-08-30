@@ -13,7 +13,6 @@ const Transactions = () => {
       const res = await axios.get("http://localhost:3000/api/transaction");
       // idk why the proxy in package.json doesn't work...
       // if proxy works then i'd be able to just write "/api/transaction"
-      // console.log(res.data);
       setTransactions(res.data);
     } catch (err) {
       console.error("Error fetching transactions:", err);
@@ -53,7 +52,7 @@ const Transactions = () => {
               return (
                 <tr key={t.id} className="hover:bg-gray-300 transition-colors">
                   <td>{new Date(t.transdate).toLocaleDateString()}</td>
-                  <td>{t.category}</td>
+                  <td>{t.categorytitle}</td>
                   <td>{t.description}</td>
                   <td>{t.transtype}</td>
                   <td>$ {t.amount}</td>
@@ -63,7 +62,7 @@ const Transactions = () => {
           </tbody>
         </table>
       )}
-      {isModalOpen && <Modal handleCancel={handleCloseModal}/>}
+      {isModalOpen && <Modal handleCancel={handleCloseModal} refreshTransactions={fetchTransactions}/>}
     </div>
   );
 };

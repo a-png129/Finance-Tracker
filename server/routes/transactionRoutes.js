@@ -2,7 +2,8 @@ import express from "express";
 import {
   createTransaction,
   getTransactions,
-  getSummaryInfo
+  getSummaryInfo,
+  getCategories,
 } from "../controllers/transactionController.js";
 import { fakeAuth } from "../middleware/authMiddleware.js";
 
@@ -19,6 +20,9 @@ router.get("/test", (req, res) => {
 
 // GET /api/transaction/summary
 router.get("/summary", getSummaryInfo);
+
+// GET /api/transaction/categories
+router.get("/categories", getCategories);
 
 // POST /api/transaction
 router.post("/", createTransaction);
