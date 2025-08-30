@@ -21,7 +21,7 @@ export async function getTransactionsQuery(user_id) {
     `SELECT t.id, t.amount, c.transType, t.description, t.transDate, c.categoryTitle, c.categoryColour
         FROM transactions t, categories c
         WHERE t.user_id=$1 AND c.user_id=$1 AND t.category_id=c.id
-        ORDER BY transDate DESC`,
+        ORDER BY transDate DESC, categoryTitle`,
     [user_id]
   );
   return result.rows;
@@ -55,7 +55,8 @@ export async function getAmountPerCategory(user_id, type) {
         FROM transactions t
         JOIN categories c ON t.category_id=c.id
         WHERE t.user_id=$1 AND c.user_id=$1 AND c.transType=$2
-        GROUP BY c.categoryTitle, c.categoryColour`,
+        GROUP BY c.categoryTitle, c.categoryColour
+        ORDER BY total DESC`,
     [user_id, type]
   );
   return result.rows
