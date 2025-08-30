@@ -1,7 +1,20 @@
-# PERN Stack Expense Tracker
-A simple expense tracker to keep tabs on spending. Right now, it handles essential operations for transactions, but the project is a work in progress!
+# Finance Tracker
+A personal finance tracking app that helps users manage their income and expenses. Users can add transactions, categorize them, and view insights like spending distribution with charts.
 
-## Roadmap
-- add data visualizations with charts and graphs
-- add user authentication with JWT
-- add category-based filtering
+## Features
+- Add income and expense transactions
+- Categorize transactions (custom categories are a work in progress!)
+- View spending breakdowns with interactive pie charts
+- Track totals for income and expenses
+
+## Tech Stack
+- Frontend: React, Tailwind CSS
+- Backend: Node.js, Express
+- Database: PostgreSQL
+- Charting: Recharts
+
+## Future Improvements
+- more charts for different data visualization
+- Authentication and multi-user support
+- Export transactions to CSV
+- Monthly budget goals and alerts
